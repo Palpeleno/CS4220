@@ -11,9 +11,9 @@ class Node:
         self.routing_table[destination] = {'next_hop':next_hop, 'path_cost':path_cost}
         
 class Link:
-    def __init__(self, node1, node2, cost):
-        self.node1 = node1
-        self.node2 = node2
+    def __init__(self,source_node, destination_node, cost):
+        self.source_node = source_node
+        self.destination_node = destination_node
         self.cost = cost
 class Topology:
     def __init__(self):
@@ -23,23 +23,27 @@ class Topology:
     def add_node(self, node_id):
         self.nodes[node_id] = Node(node_id)
         
-    def add_link(self, node1, node2, cost):
-        link = Link(node1, node2, cost)
+    def add_link(self, source_node, destination_node, cost):
+        link = Link(source_node, destination_node, cost)
         self.links.append(link)
-        self.nodes[node1].add_neighbor(node2,cost)
-        self.nodes[node2].add_neighbor(node1,cost)
+        self.nodes[nsource_nodeode1].add_neighbor(destination_node,cost)
+        self.nodes[destination_node].add_neighbor(source_node,cost)
     
     def read_topology_file(self,file_path):
         with open (file_path, 'r') as file:
             for line in file:
                 data = line.strip().split()
-                self.add_node(node1)
-                self.add_node(node2)
-                self.add_link(node1, node, cost)
+                source_node, destination_node, cost = map(int, data)
+                self.add_node(source_node)
+                self.add_node(destination_node)
+                self.add_link(source_node, destination_node, cost)
                 
                 
         """
-        Purpose: 
+        Purpose: reads topo file line by line spliting them with
+        source node, destintion node, and cost. first the file is 
+        stripped line by line as the former parameters and maped 
+        as a integer tripplet as in the file. nodes are apended  
         """
         
     # end def    
