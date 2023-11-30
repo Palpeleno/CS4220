@@ -15,27 +15,32 @@ class Link:
         self.source_node = source_node
         self.destination_node = destination_node
         self.cost = cost
+        
 class Topology:
     def __init__(self):
         self.nodes = {} #to store node
         self.links = [] #list to store links
     
     def add_node(self, node_id):
-        self.nodes[node_id] = Node(node_id)
+        if node_id not in self.nodes:
+            self.nodes[node_id] = Node(node_id)
+
         
     def add_link(self, source_node, destination_node, cost):
+        self.add_node(source_node)
+        self.add_node(destination_node)
         link = Link(source_node, destination_node, cost)
         self.links.append(link)
         self.nodes[nsource_nodeode1].add_neighbor(destination_node,cost)
         self.nodes[destination_node].add_neighbor(source_node,cost)
     
-    def read_topology_file(self,file_path):
+    def read_topology_file(self, file_path):
         with open (file_path, 'r') as file:
             for line in file:
                 data = line.strip().split()
                 source_node, destination_node, cost = map(int, data)
-                self.add_node(source_node)
-                self.add_node(destination_node)
+                # self.add_node(source_node)
+                # self.add_node(destination_node)
                 self.add_link(source_node, destination_node, cost)
                 
                 
@@ -45,8 +50,7 @@ class Topology:
         stripped line by line as the former parameters and maped 
         as a integer tripplet as in the file. nodes are apended  
         """
-        
-    # end def    
+           
     def write_output_file(self, file_path):
         with open(file_path,'w') as file:
             #writes the forwarding tables from readable topofile
@@ -60,7 +64,7 @@ class Topology:
  ## test driver functions        
 topology = Topology()
 topology.read_topology_file("topology.txt")
-topology.write_output_file("output.txt")
+topology.write_output_file('output.txt')
 
 # topology.add_node(1)
 # topology.add_node(2)
