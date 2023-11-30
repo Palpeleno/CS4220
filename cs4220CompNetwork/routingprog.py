@@ -59,8 +59,8 @@ class Topology:
         
  ## test driver functions        
 topology = Topology()
-topology.read_topology_file('topology.txt')
-topology.write_output_file('output.txt')
+topology.read_topology_file("topology.txt")
+topology.write_output_file("output.txt")
 
 # topology.add_node(1)
 # topology.add_node(2)
