@@ -35,13 +35,13 @@ class Topology:
         self.add_node(destination_node)
         link = Link(source_node, destination_node, cost)
         self.links.append(link)
-        self.nodes[source_node].add_neighbor(destination_node,cost)
+        self.nodes[nsource_nodeode1].add_neighbor(destination_node,cost)
         self.nodes[destination_node].add_neighbor(source_node,cost)
     
     def read_topology_file(self, file_path):
         with open(file_path, 'r') as file:
             for line in file:
-                data = line.strip().split() #striip at white space,split at end of line 
+                data = line.strip().split("$") #striip at white space,split at end of line 
                 source_node, destination_node, cost = map(int, data)
                 # self.add_node(source_node)
                 # self.add_node(destination_node)
