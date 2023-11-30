@@ -28,9 +28,23 @@ class Topology:
         self.links.append(link)
         self.nodes[node1].add_neighbor(node2,cost)
         self.nodes[node2].add_neighbor(node1,cost)
+    
+    def read_topology_file(self,file_path):
+        with open (file_path, 'r') as file:
+            for line in file:
+                data = line.strip().split()
+                self.add_node(node1)
+                self.add_node(node2)
+                self.add_link(node1, node, cost)
+                
+                
+        """
+        Purpose: 
+        """
         
-    def read_topology_file(self, file_path):
-        with open(topofile.txt,'r') as file:
+    # end def    
+    def write_output_file(self, file_path):
+        with open(file_path,'w') as file:
             #writes the forwarding tables from readable topofile
             for node_id in sorted(self.nodes):
                 node = self.nodes[node_id]
