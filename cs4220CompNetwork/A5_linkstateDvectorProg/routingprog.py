@@ -38,6 +38,13 @@ class Topology:
         self.nodes[source_node].add_neighbor(destination_node,cost)
         self.nodes[destination_node].add_neighbor(source_node,cost)
     
+    def update_distance_vector(self, source_node, destination_node, new_cost):
+        
+    
+    def calculate_distance_vector(self):
+    
+    def apply_topology_changes(self, changefile):
+    
     def read_topology_file(self, file_path):
         with open(file_path, 'r') as file:
             for line in file:
@@ -46,10 +53,7 @@ class Topology:
                 # self.add_node(source_node)
                 # self.add_node(destination_node)
                 self.add_link(source_node, destination_node, cost)
-    
-    # Dx(y) = min { C(x,v) + Dv(y), Dx(y) } for each node y ? N    
-    def distanceVector():
-                    
+                 
         """
         Purpose: reads topo file line by line spliting them with
         source node, destintion node, and cost. first the file is 
@@ -71,12 +75,14 @@ class Topology:
             file.write("from 2 to 1 cost 6 hops 2 5 4 message here is a message from 2 to 1\n")
             file.write("from 3 to 5 cost 8 hops 3 2 1 4 5 message this one gets sent from 3 to 5!\n")
         
+            # make a def for message parsing 
             your_message_data_list = messagefile.txt
         
             for message_data in your_message_data_list:
                 source_node, destination_node, path_cost, hops, message = message_data
                 file.write(f"from {source_node} to {destination_node} cost {path_cost} hops {' '.join(map(str, hops))} message {message}\n")
- ## test driver functions        
+
+## test driver functions        
 topology = Topology()
 topology.read_topology_file('topology.txt')
 topology.write_output_file('output.txt')
