@@ -41,13 +41,15 @@ class Topology:
     def read_topology_file(self, file_path):
         with open(file_path, 'r') as file:
             for line in file:
-                data = line.strip().split() #striip at white space,split at end of line 
+                data = line.strip().split() #strip at white space,split at end of line 
                 source_node, destination_node, cost = map(int, data)
                 # self.add_node(source_node)
                 # self.add_node(destination_node)
                 self.add_link(source_node, destination_node, cost)
-                
-                
+    
+    # Dx(y) = min { C(x,v) + Dv(y), Dx(y) } for each node y ? N    
+    def distanceVector():
+                    
         """
         Purpose: reads topo file line by line spliting them with
         source node, destintion node, and cost. first the file is 
@@ -68,13 +70,16 @@ class Topology:
             file.write("\nMessages to be sent:\n")
             file.write("from 2 to 1 cost 6 hops 2 5 4 message here is a message from 2 to 1\n")
             file.write("from 3 to 5 cost 8 hops 3 2 1 4 5 message this one gets sent from 3 to 5!\n")
-            
-            
-            
+        
+            your_message_data_list = messagefile.txt
+        
+            for message_data in your_message_data_list:
+                source_node, destination_node, path_cost, hops, message = message_data
+                file.write(f"from {source_node} to {destination_node} cost {path_cost} hops {' '.join(map(str, hops))} message {message}\n")
  ## test driver functions        
 topology = Topology()
 topology.read_topology_file('topology.txt')
-topology.write_output_file("output.txt")
+topology.write_output_file('output.txt')
 
 # topology.add_node(1)
 # topology.add_node(2)

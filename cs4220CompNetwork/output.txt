@@ -1,9 +1,0 @@
-Forwarding Table for Node 1:
-Forwarding Table for Node 2:
-Forwarding Table for Node 3:
-Forwarding Table for Node 4:
-Forwarding Table for Node 5:
-
-Messages to be sent:
-from 2 to 1 cost 6 hops 2 5 4 message here is a message from 2 to 1
-from 3 to 5 cost 8 hops 3 2 1 4 5 message this one gets sent from 3 to 5!
