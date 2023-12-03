@@ -40,7 +40,8 @@ class Topology:
     
     def update_distance_vector(self, source_node, destination_node, new_cost):
         # implementing the distincce vector algo similar to floyd warshalls
-        # if/else lowest cost of current source node, if 
+        # checks for negative cycle in graph, although our scenerio may 
+        # not have it, nor in example
         if new_cost < 0:
             #link na
             self.node[source_node].neighbors[destination_node] = float('inf')
@@ -53,21 +54,21 @@ class Topology:
         
         #calculates based on floyds/warshalls algo of min of two vectors and weight
     def calculate_distance_vector(self):
-        # cycle through nodes in data structure
+        # cycle through source nodes in data structure
         for source_node in self.node:
-
+            # cycle through destination node in data structure 
             for destination_node in self.nodes:
-
                 # when weight distance is "far"
                 if source_node != destination_node:
                     min_cost = float('inf')
                     next_hop = None
 
+                    # loops through neighbors of current source node to find shorter paths
                     for neighbor_node in self.nodes[source_node].neighbors:
-                        cost_to_neighbor = 
-                        cost_from_neighbor = 
+                        cost_to_neighbor = self.node[source_node].neighbors[neighbor_node]
+                        cost_from_neighbor = self.node[neighbor_node].routing_table[destination_node]['path_cost']
 
-                        total_cost=cost_to_neighbor + cost_from_neighbor
+                        total_cost = cost_to_neighbor + cost_from_neighbor
 
                         if total_cost < min_cost:
                             min_cost = total_cost
@@ -78,7 +79,11 @@ class Topology:
 
 
     def apply_topology_changes(self, changefile):
-        with open(changes_file, 'r') as file:
+        with open(changefile, 'r') as file:
+            for line in file:
+                data = line.strip().split()
+                source_node, destination_node, new_cost = map(int, data)
+                self.update_distance_vector(source_node, destination_node, new_cost)
     
     def read_topology_file(self, file_path):
         with open(file_path, 'r') as file:
