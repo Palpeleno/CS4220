@@ -39,11 +39,46 @@ class Topology:
         self.nodes[destination_node].add_neighbor(source_node,cost)
     
     def update_distance_vector(self, source_node, destination_node, new_cost):
+        # implementing the distincce vector algo similar to floyd warshalls
+        # if/else lowest cost of current source node, if 
+        if new_cost < 0:
+            #link na
+            self.node[source_node].neighbors[destination_node] = float('inf')
+        else:
+            # update link cost 
+            self.node[source_node].neighbors[destination_node] = new_cost
+
+        #recalculaate distance vector
+        self.calculate_distance_vector()
         
-    
+        #calculates based on floyds/warshalls algo of min of two vectors and weight
     def calculate_distance_vector(self):
-    
+        # cycle through nodes in data structure
+        for source_node in self.node:
+
+            for destination_node in self.nodes:
+
+                # when weight distance is "far"
+                if source_node != destination_node:
+                    min_cost = float('inf')
+                    next_hop = None
+
+                    for neighbor_node in self.nodes[source_node].neighbors:
+                        cost_to_neighbor = 
+                        cost_from_neighbor = 
+
+                        total_cost=cost_to_neighbor + cost_from_neighbor
+
+                        if total_cost < min_cost:
+                            min_cost = total_cost
+                            next_hop = neighbor_node
+
+                    # routing table update
+                    self.node[source_node].update_routing_table(source_node, destination_node, min_cost)
+
+
     def apply_topology_changes(self, changefile):
+        with open(changes_file, 'r') as file:
     
     def read_topology_file(self, file_path):
         with open(file_path, 'r') as file:
