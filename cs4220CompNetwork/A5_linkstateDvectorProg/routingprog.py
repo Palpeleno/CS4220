@@ -1,6 +1,6 @@
 import os
-# file_path = os.pathabspath("C:\Users\islay\Documents\Local_Repo\cs4220CompNetwork\topology.txt")
 
+# change path depending on path of your input files 
 
 class Node: 
     def __init__(self, node_id):
@@ -122,10 +122,23 @@ class Topology:
                 source_node, destination_node, path_cost, hops, message = message_data
                 file.write(f"from {source_node} to {destination_node} cost {path_cost} hops {' '.join(map(str, hops))} message {message}\n")
 
+# FILE Mangement
+# tmpt
+# topofile = "topology.txt"
+
+# absolute path 
+topofile_path = os.path.abspath(r"C:\\Users\islay\Local Documents\Repository\cs4220\CS4220\cs4220CompNetwork\topology.txt")
+output_path = os.path.abspath(r"C:\Users\islay\Local Documents\Repository\cs4220\CS4220\cs4220CompNetwork\A5_linkstateDvectorProg\routingprog.py")
+
+
+
+
+
+
 ## test driver functions        
 topology = Topology()
-topology.read_topology_file('topology.txt')
-topology.write_output_file('output.txt')
+topology.read_topology_file(topofile_path)
+topology.write_output_file(output_path)
 
 # topology.add_node(1)
 # topology.add_node(2)
